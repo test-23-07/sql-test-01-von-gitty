@@ -1,0 +1,96 @@
+{
+  "repo": "test-23-07/sql-01-GittyBitch",
+  "introduction": "In dieser ersten kleinen Mini SQL-Aufgabe erstellt ihr ein SQL-Skript für SQLite, das eine Tabelle mit zwei Spalten erstellen soll. \n Folgt bitte genau den Anweisungen. Unter Hilfe findet ihr Links, die mit dem Wort Spickzettel markiert sind. Benutzt diese gerne bei Bedarf, falls ihr nicht weiterkommt. \n Zum Verständnis: SQLite eine SQL Datenbank vergleichbar mit mySQL. Praktisch ein Dialekt (nur viel kleiner und leichtgewichtiger). Die W3C Spickzettel unten sind allgemein zu SQL, wer jedoch speziell Hilfe zum SQLite-Dialekt benötigt, der sollte die angegebenen SQLite Docs benutzen. Außerdem sollte erwähnt werden, dass eine Erstellung der SQLite DB hier nicht nötig ist, das wird durch den TA Bot erledigt. Wer Probleme bei der Erledigung der Aufgaben hat, der sollte sich das [W3C Tutorial SQL](https://www.w3schools.com/sql/) noch einmal ansehen und bei Gelegenheit erneut etwas mit [SQL Island](https://sql-island.informatik.uni-kl.de/) spielen.",
+  "logo_url": "https://3.bp.blogspot.com/-VdxnwsQC46k/WUE-wWtj3VI/AAAAAAAAbbE/EsX2rnx6sRkz6AZ3ojgSrSsvKubbyjyQwCLcBGAs/s1600/Sqlite.jpg",
+  "timeframe": "15 Minuten (Viel Erfolg!)",
+  "tests": [
+    {
+      "specs": {
+        "title": "Erstelle eine Datei namens create.sql im Stammverzeichnis dieses Repos"
+      },
+      "name": "checking for create.sql script",
+      "feedback": "SQL script could not be found",
+      "urls": [
+        ""
+      ],
+      "keywords": [
+        "script",
+        "sql"
+      ],
+      "type": "",
+      "run": "test -f create.sql",
+      "file": "",
+      "output": "",
+      "comparison": "",
+      "points": 5,
+      "timeout": 1
+    },
+    {
+      "specs": {
+        "title": "Editiere create.sql und erzeuge so eine Tabelle namens Benutzer mit den Spalten vorname, nachname und email, jeweils VARCHAR(255)"
+      },
+      "name": "create a table named Benutzer with two columns of type varchar(255) named vorname, nachname and email",
+      "feedback": "Could not find a table matching the requirements. Please check the script",
+      "urls": [
+        "https://www.w3schools.com/sql/sql_create_table.asp"
+      ],
+      "keywords": [
+        "sqlite3",
+        "create table"
+      ],
+      "type": "sqlite3",
+      "dbName": "temporary.db",
+      "run": "SELECT EXISTS (SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'Benutzer') AS table_exists, EXISTS (SELECT 1 FROM pragma_table_info('Benutzer') WHERE name = 'vorname' AND type = 'VARCHAR(255)') AS vorname_exists, EXISTS (SELECT 1 FROM pragma_table_info('Benutzer') WHERE name = 'nachname' AND type = 'VARCHAR(255)') AS nachname_exists, EXISTS (SELECT 1 FROM pragma_table_info('Benutzer') WHERE name = 'email' AND type = 'VARCHAR(255)') AS email_exists;",
+      "file": "create.sql",
+      "output": "1|1|1|1",
+      "comparison": "exact",
+      "points": 5,
+      "timeout": 20
+    },
+    {
+      "specs": {
+        "title": "Editiere create.sql um Deiner neuen Tabelle einen neuen Eintrag hinzuzufügen, nutze 'Hans' als den Vornamen,'Dampf' als den Nachnamen und 'hans@dampf.de' als E-Mail-Adresse ."
+      },
+      "name": "checking for 'Hans', 'Dampf' and 'hans@dampf.de' entries in table (vorname/nachname/email respectively)",
+      "feedback": "Could not find an entry matching the requirements. Please check the script",
+      "urls": [
+        "https://www.w3schools.com/sql/sql_insert.asp",
+        "https://www.sqlite.org/lang_insert.html"
+      ],
+      "keywords": [
+        "sqlite3",
+        "insert table"
+      ],
+      "type": "sqlite3",
+      "dbName": "temporary.db",
+      "run": "SELECT EXISTS (SELECT 1 FROM Benutzer WHERE vorname = 'Hans' AND nachname = 'Dampf' AND email = 'hans@dampf.de') AS entry_exists;",
+      "file": "",
+      "output": "1",
+      "comparison": "exact",
+      "points": 5,
+      "timeout": 20
+    },
+    {
+      "specs": {
+        "title": "Editiere create.sql um Deiner neuen Tabelle einen neuen Eintrag hinzuzufügen, nutze 'Lilli' als den Vornamen,'Wolke' als den Nachnamen und 'lilli@wolke.de' als E-Mail-Adresse ."
+      },
+      "name": "checking for 'Lilli', 'Wolke' and 'lilli@wolke.de' entries in table (vorname/nachname/email respectively)",
+      "feedback": "Could not find an entry matching the requirements. Please check the script",
+      "urls": [
+        "https://www.sqlite.org/lang_insert.html"
+      ],
+      "keywords": [
+        "sqlite3",
+        "insert row table"
+      ],
+      "type": "sqlite3",
+      "dbName": "temporary.db",
+      "run": "SELECT EXISTS (SELECT 1 FROM Benutzer WHERE vorname = 'Lilli' AND nachname = 'Wolke' AND email = 'lilli@wolke.de') AS entry_exists;",
+      "file": "",
+      "output": "1",
+      "comparison": "exact",
+      "points": 5,
+      "timeout": 20
+    }
+  ]
+}
